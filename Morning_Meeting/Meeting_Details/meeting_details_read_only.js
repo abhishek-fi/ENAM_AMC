@@ -1,0 +1,9 @@
+disable Meeting_Title;
+disable Meeting_Date;
+disable Analyst_Meeting_Attendance.Analyst_Name;
+disable Analyst_Meeting_Attendance.Invited;
+disable Analyst_Meeting_Attendance.Attended_Mode;
+disable Analyst_Meeting_Attendance.Have_you_attended_today_s_meeting;
+disable Analyst_Meeting_Attendance.Not_Attended_Reason;
+disable Analyst_Meeting_Attendance.Mode;
+disable Analyst_Meeting_Attendance.Will_you_be_able_to_join_tomorrow_s_meeting;
