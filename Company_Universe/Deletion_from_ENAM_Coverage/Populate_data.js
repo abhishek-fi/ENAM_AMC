@@ -1,3 +1,4 @@
+// Deletion from ENAM Coverage - Load of the form - Populate data
 hide Record_ID;
 hide Enam_Coverage;
 disable Date_field;
