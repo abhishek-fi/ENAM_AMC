@@ -47,13 +47,12 @@ No records are inserted or updated here; this is purely UI setup plus field popu
 
 Builds and sends an HTML approval email to the Head of Research with embedded Approve/Reject links, then closes the form:
 
-1. **Builds the base approval URL** (`baseURL`) pointing to the published Creator page `Deleation_Email_Page` (a `page-perma` public permalink under the app URI, on `https://creatorapp.zohopublic.in`). Note the page link name is spelled `Deleation_Email_Page` (typo for "Deletion") in the code.
+1. **Builds the base approval URL** (`baseURL`) pointing to the published Creator page `Deleation_Email_Page` (a `page-perma` public permalink under the app URI, on `https://creatorapp.zohopublic.in`).
 2. **Looks up the approver:** `user_dt = User_Master[ID != 0 && Profile == "Head of Research"]` — fetches the `User_Master` record whose `Profile` is "Head of Research". If found (`user_dt != null`), it reads:
    - `name` ← `user_dt.First_Name`
    - `email_id` ← `user_dt.Email_Id`
    - `profile` ← `user_dt.Profile`
-   - and logs the email with `info email_id;` (debug output).
-   - *Note:* `name` and `email_id` are only assigned inside the `if` block. If no "Head of Research" user is found, these variables would be unset when used later in the email.
+   - and logs the email with `info email_id;`.
 3. **Gathers request context:**
    - `id = input.Record_ID`
    - `company = input.Company_Name`
@@ -65,7 +64,7 @@ Builds and sends an HTML approval email to the Head of Research with embedded Ap
 6. **Sends the email** via `sendmail`:
    - **from:** `rms@enamamc.com`
    - **to:** `email_id` (the Head of Research's email)
-   - **subject:** `"Approval Request for Deletion "` (note trailing space)
+   - **subject:** `"Approval Request for Deletion "`
    - **message:** the HTML `emailBody`
 7. **Closes the form window:** `openUrl("#Script:page.close ","Same window");` — runs a client script to close the current page in the same window.
 

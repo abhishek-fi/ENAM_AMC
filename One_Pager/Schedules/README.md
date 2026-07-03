@@ -2,19 +2,19 @@
 
 > **App:** ENAM AMC (Zoho Creator) · **Module:** One Pager · **Section:** Scheduled Workflows
 
-These seven schedules drive the monthly One Pager production pipeline for the previous month's submitted one-pagers. The chain runs asynchronously: **FI_AB Get Chart and Upload** pulls PE-band data from Zoho Sheet per ticker and generates/uploads charts; **FI_AB Initiate the HTML process** builds the per-record price table and static HTML; **PDF_Combing_Process_Start** creates/ensures the monthly `One_Pager_Report` record and dispatches submitted records to Zoho Writer combine jobs in batches of 20 (parts); **Combine_PDF_Parts_FI_AB** waits for all part jobs to complete, downloads them and merges into a single monthly PDF via Zoho Writer; **Get_Final_PDF_FI_AB** polls the combined job status and stores the final document resource id. Two housekeeping schedules round it out: **One Pager Reminder** emails analysts who have not yet added a one-pager this month, and **FI_AB One pager flag** resets the `Current_Month_One_Pager` flag on the Company Universe at month start. All pipeline schedules compute the previous-month date window (many are noted in comments as still running Daily but intended to be Monthly). None of these files contain the `appUri.contains("environment")` production guard.
+These seven schedules drive the monthly One Pager production pipeline for the previous month's submitted one-pagers. The chain runs asynchronously: **FI_AB Get Chart and Upload** pulls PE-band data from Zoho Sheet per ticker and generates/uploads charts; **FI_AB Initiate the HTML process** builds the per-record price table and static HTML; **PDF_Combing_Process_Start** creates/ensures the monthly `One_Pager_Report` record and dispatches submitted records to Zoho Writer combine jobs in batches of 20 (parts); **Combine_PDF_Parts_FI_AB** waits for all part jobs to complete, downloads them and merges into a single monthly PDF via Zoho Writer; **Get_Final_PDF_FI_AB** polls the combined job status and stores the final document resource id. Two housekeeping schedules round it out: **One Pager Reminder** emails analysts who have not yet added a one-pager this month, and **FI_AB One pager flag** resets the `Current_Month_One_Pager` flag on the Company Universe at month start. All pipeline schedules compute the previous-month date window.
 
 ## Summary
 
 | # | Link name (file) | Schedule name | Frequency / Time | Status | Calls | GitHub |
 |---|------------------|---------------|------------------|--------|-------|--------|
-| 1 | `Combine_PDF_Parts_FI_AB` | Combine_PDF_Parts_FI_AB | Daily at 20:12 (comment: should be monthly) | Active | Zoho Writer combine API, `zoho_oauth_connection` | [Combine_PDF_Parts_FI_AB.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/One_Pager/Schedules/Combine_PDF_Parts_FI_AB.js) |
-| 2 | `FI_AB_Get_Chart_and_Uploa` | FI_AB Get Chart and Upload | Daily at 20:34 (comment: should be monthly) | Active | `thisapp.getAccessToken_FI_AB()`, Zoho Sheet API, `thisapp.generateChart()` | [FI_AB_Get_Chart_and_Uploa.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/One_Pager/Schedules/FI_AB_Get_Chart_and_Uploa.js) |
-| 3 | `FI_AB_Initiate_the_HTML_p` | FI_AB Initiate the HTML process | Daily at 20:36 (comment: should be monthly) | Active | `thisapp.GetExcelFileCovertToSheetAndRead()`, `thisapp.FI_AB_One_Pager_Static_HTML()` | [FI_AB_Initiate_the_HTML_p.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/One_Pager/Schedules/FI_AB_Initiate_the_HTML_p.js) |
+| 1 | `Combine_PDF_Parts_FI_AB` | Combine_PDF_Parts_FI_AB | Daily at 20:12 | Active | Zoho Writer combine API, `zoho_oauth_connection` | [Combine_PDF_Parts_FI_AB.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/One_Pager/Schedules/Combine_PDF_Parts_FI_AB.js) |
+| 2 | `FI_AB_Get_Chart_and_Uploa` | FI_AB Get Chart and Upload | Daily at 20:34 | Active | `thisapp.getAccessToken_FI_AB()`, Zoho Sheet API, `thisapp.generateChart()` | [FI_AB_Get_Chart_and_Uploa.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/One_Pager/Schedules/FI_AB_Get_Chart_and_Uploa.js) |
+| 3 | `FI_AB_Initiate_the_HTML_p` | FI_AB Initiate the HTML process | Daily at 20:36 | Active | `thisapp.GetExcelFileCovertToSheetAndRead()`, `thisapp.FI_AB_One_Pager_Static_HTML()` | [FI_AB_Initiate_the_HTML_p.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/One_Pager/Schedules/FI_AB_Initiate_the_HTML_p.js) |
 | 4 | `FI_AB_One_pager_flag` | FI_AB One pager flag | Monthly at 00:00 (1st of month) | Active | — (direct record update) | [FI_AB_One_pager_flag.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/One_Pager/Schedules/FI_AB_One_pager_flag.js) |
-| 5 | `Get_Final_PDF_FI_AB` | Get_Final_PDF_FI_AB | Daily at 20:15 (comment: should be monthly) | Active | `zoho_oauth_connection` (job status GET) | [Get_Final_PDF_FI_AB.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/One_Pager/Schedules/Get_Final_PDF_FI_AB.js) |
+| 5 | `Get_Final_PDF_FI_AB` | Get_Final_PDF_FI_AB | Daily at 20:15 | Active | `zoho_oauth_connection` (job status GET) | [Get_Final_PDF_FI_AB.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/One_Pager/Schedules/Get_Final_PDF_FI_AB.js) |
 | 6 | `One_Pager_Reminder` | One Pager Reminder | Monthly at 09:30 | Active | `sendmail` | [One_Pager_Reminder.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/One_Pager/Schedules/One_Pager_Reminder.js) |
-| 7 | `PDF_Combing_Process_Start` | PDF_Combing_Process_Start | Daily at 20:10 (comment: should be monthly) | Active | `thisapp.Initiate_PDF_Combining()` | [PDF_Combing_Process_Start.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/One_Pager/Schedules/PDF_Combing_Process_Start.js) |
+| 7 | `PDF_Combing_Process_Start` | PDF_Combing_Process_Start | Daily at 20:10 | Active | `thisapp.Initiate_PDF_Combining()` | [PDF_Combing_Process_Start.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/One_Pager/Schedules/PDF_Combing_Process_Start.js) |
 
 ## Schedule Details
 
@@ -22,7 +22,7 @@ These seven schedules drive the monthly One Pager production pipeline for the pr
 
 - **Link name (file):** `Combine_PDF_Parts_FI_AB`
 - **Schedule name:** `Combine_PDF_Parts_FI_AB`
-- **Frequency / Time:** Daily at 20:12:00 (line 1). A comment on line 2 notes "should be monthly".
+- **Frequency / Time:** Daily at 20:12:00.
 - **Status:** Active
 - **Production guard:** No
 - **GitHub:** [Combine_PDF_Parts_FI_AB.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/One_Pager/Schedules/Combine_PDF_Parts_FI_AB.js)
@@ -45,7 +45,7 @@ This is the final merge step of the PDF pipeline. It:
 
 - **Link name (file):** `FI_AB_Get_Chart_and_Uploa`
 - **Schedule name:** `FI_AB Get Chart and Upload`
-- **Frequency / Time:** Daily at 20:34:00 (line 1). Comment on line 2: "as of now it's running daily it should be configured to run monthly".
+- **Frequency / Time:** Daily at 20:34:00.
 - **Status:** Active
 - **Production guard:** No
 - **GitHub:** [FI_AB_Get_Chart_and_Uploa.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/One_Pager/Schedules/FI_AB_Get_Chart_and_Uploa.js)
@@ -59,7 +59,6 @@ Generates and uploads PE-band charts for each submitted one-pager of the previou
 3. For each record, calls the Zoho Sheet API (`worksheet.content.get` on resource `ln7pj9f96d9e6b0224aa3a89bfb84dbe7265c`, worksheet named after the record's `Bloomberg_Ticker`, rows 1–516, columns 1–15) via `zoho_oauth_connection`.
 4. Parses the returned `range_details`: extracts header statistics — `mean` (row 1, col 6), `plus1` (row 2, col 8), `minus1` (row 3, col 8), `title` (row 4, col 5) — and builds a data list of `{Date, PE}` pairs from rows > 4 (col 2 = date, col 5 = PE).
 5. Assembles an input map (`data`, `mean`, `plus1`, `minus1`, `id`, `title`, `token`) and calls `thisapp.generateChart(iString)` to render and upload the chart.
-6. A `sendmail` block for reporting chart-generation responses and the commented hardcoded token line are inactive (commented out).
 
 ---
 
@@ -67,7 +66,7 @@ Generates and uploads PE-band charts for each submitted one-pager of the previou
 
 - **Link name (file):** `FI_AB_Initiate_the_HTML_p`
 - **Schedule name:** `FI_AB Initiate the HTML process`
-- **Frequency / Time:** Daily at 20:36:00 (line 1). Comment on line 2: "should be configured monthly".
+- **Frequency / Time:** Daily at 20:36:00.
 - **Status:** Active
 - **Production guard:** No
 - **GitHub:** [FI_AB_Initiate_the_HTML_p.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/One_Pager/Schedules/FI_AB_Initiate_the_HTML_p.js)
@@ -80,8 +79,6 @@ Builds the price table and static HTML for each submitted one-pager of the previ
 2. For each record it calls, wrapped in try/catch:
    - `thisapp.GetExcelFileCovertToSheetAndRead(recId)` — builds the price table; on failure emails `abhishek@fristinetech.com`, `parth@fristinetech.com` (subject "Generating price table for one pager failed").
    - `thisapp.FI_AB_One_Pager_Static_HTML(recId)` — generates the one-pager HTML; on failure emails the same recipients (subject "Generate one pager failed").
-3. A testing query (`One_Page_Module[ID != 0 && Bloomberg_Ticker != ""]`) and single-record test lines are commented out (inactive), with a prominent comment reminder to keep the real query enabled.
-
 ---
 
 ### 4. `FI_AB One pager flag`
@@ -103,7 +100,7 @@ Month-start housekeeping: fetches all `Company_Universe` records where `Current_
 
 - **Link name (file):** `Get_Final_PDF_FI_AB`
 - **Schedule name:** `Get_Final_PDF_FI_AB`
-- **Frequency / Time:** Daily at 20:15:00 (line 1). Comment on line 2: "should be monthly and start of the month… accordingly it should be configured later".
+- **Frequency / Time:** Daily at 20:15:00.
 - **Status:** Active
 - **Production guard:** No
 - **GitHub:** [Get_Final_PDF_FI_AB.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/One_Pager/Schedules/Get_Final_PDF_FI_AB.js)
@@ -141,7 +138,7 @@ Reminds analysts who have not submitted a one-pager for the current month:
 
 - **Link name (file):** `PDF_Combing_Process_Start`
 - **Schedule name:** `PDF_Combing_Process_Start`
-- **Frequency / Time:** Daily at 20:10:00 (line 1). Comment on line 2: "should be monthly".
+- **Frequency / Time:** Daily at 20:10:00.
 - **Status:** Active
 - **Production guard:** No
 - **GitHub:** [PDF_Combing_Process_Start.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/One_Pager/Schedules/PDF_Combing_Process_Start.js)

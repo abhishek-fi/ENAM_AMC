@@ -55,7 +55,6 @@ Lets an analyst request permission to edit an already-submitted morning note. It
 - For the note, inserts a `Meeting_Notes_Edit_Request` record capturing: `Added_User` (login user), `Analyst_Name` (the note's Analyst), `Company_Name` (the note's company ID), `Edit_Request_Raise_Time` (now), `Meet_Note`, and `Ref_Record` (the source note ID).
 - Looks up the recipient from `User_Master` for the Research Head (`Profile == "Head of Research" || Profile == "HoR" && User_Status == "Active"`) and builds a link to the newly created edit-request record in the Meeting Notes Edit Request Report.
 - Sends an email from `rms@enamamc.com` to the Research Head, subject "Meeting Notes Edit Request Raised", containing the analyst name, company name, the meeting note text, and a "View Record" link to approve.
-- Note: it sets a local variable `Raised_Request = true` (not `input.Raised_Request`), so unlike workflow #5 it does not flag the source record.
 
 ### 3. `meeting notes edit approve`
 
@@ -74,7 +73,6 @@ Approves an analyst's edit request: it unlocks the underlying morning note for e
 - On the edit-request record, sets both `Approved = true` and `Rejection = true`.
 - If the edit request exists, it resolves the analyst's name and email, builds a record-edit link into `My_Morning_Notes_Report` for the referenced note, and emails the analyst from `rms@enamamc.com` (subject "Meeting Notes Edit Request Approved – Action Required") telling them the request was approved and providing the "click here" link to update the note.
 - If the edit request is not found, it shows "Meeting Notes Edit Request not found."
-- Note: the `morning_meeting_notes` lookup on line 15 is computed but not otherwise used; an approval-comment popup flow is present but commented out.
 
 ### 4. `Meeting notes edit rejection`
 

@@ -96,7 +96,7 @@ Requires the analyst to provide an attendance status before the record can be sa
 Prevents any user other than the system account from directly creating a new attendance record from the form.
 
 - Condition: runs when the logged-in user is **not** `zoho@enamamc.com`.
-- Actions: disables the fields `Mode`, `Not_attended_reason`, `Location`, `Will_you_be_able_to_join_tomorrow`, `Analyst_Name`, and `Meeting_Detail` (`Mode` is disabled twice — redundant), then alerts "You do not have access to create record!".
+- Actions: disables the fields `Mode`, `Not_attended_reason`, `Location`, `Will_you_be_able_to_join_tomorrow`, `Analyst_Name`, and `Meeting_Detail`, then alerts "You do not have access to create record!".
 
 ---
 

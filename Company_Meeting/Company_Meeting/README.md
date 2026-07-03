@@ -154,7 +154,7 @@ On load of a new record, looks up the logged-in user (`zoho.loginuserid`) in **U
 
 **What it does**
 
-When the user enters a **Target price**, it computes the return percentage as `((Target_price - Closing_Price) / Closing_Price * 100)` rounded to 2 decimals and writes it into the **Return Percent** field. (Note: no guard against a zero `Closing_Price`, which would cause a divide-by-zero; a local `targetPrice` variable is assigned but not otherwise used.)
+When the user enters a **Target price**, it computes the return percentage as `((Target_price - Closing_Price) / Closing_Price * 100)` rounded to 2 decimals and writes it into the **Return Percent** field.
 
 ---
 
@@ -180,7 +180,7 @@ When the **Return (%)** field changes, it sets **Upside/Downside** to `"Downside
 
 **What it does**
 
-Runs on submission but only when `Manual_Edit_Flag == true` (this flag is set true on load by the "dev section" workflow and set false after a successful submit). It uses a `validationFailed` accumulator pattern: each check raises a field-level `alert` and sets the flag rather than cancelling immediately, so all missing-field messages surface together. Required-field checks cover: Meeting Time from, Meeting Time to, Type of meeting, Company Name, Meeting Location, Status, Title of Company Attendees, Part of Investment Universe, Part of any of the portfolio on the date of meeting, Meeting Was Attended, Name of Fund Manager attended the meeting, Has CIO attended the meeting, Meeting Organized by Broker, and Meeting Note. Conditional checks: if Status is "Cancelled", Cancellation Reason must be filled; if Meeting Organized by Broker is "Yes", Broker name must be filled; and a target-price check `if(Closing_Price != 0 && Target_price == 0 || Target_price == null)` requiring Target Price to be non-zero/non-null. Finally, if `validationFailed` is true, it issues `cancel submit` to block the submission. (Note: the target-price condition mixes `&&` and `||` without parentheses, so operator precedence makes it fire whenever `Target_price` is null regardless of Closing Price — worth flagging.)
+Runs on submission but only when `Manual_Edit_Flag == true` (this flag is set true on load by the "dev section" workflow and set false after a successful submit). It uses a `validationFailed` accumulator pattern: each check raises a field-level `alert` and sets the flag rather than cancelling immediately, so all missing-field messages surface together. Required-field checks cover: Meeting Time from, Meeting Time to, Type of meeting, Company Name, Meeting Location, Status, Title of Company Attendees, Part of Investment Universe, Part of any of the portfolio on the date of meeting, Meeting Was Attended, Name of Fund Manager attended the meeting, Has CIO attended the meeting, Meeting Organized by Broker, and Meeting Note. Conditional checks: if Status is "Cancelled", Cancellation Reason must be filled; if Meeting Organized by Broker is "Yes", Broker name must be filled; and a target-price check `if(Closing_Price != 0 && Target_price == 0 || Target_price == null)` requiring Target Price to be non-zero/non-null. Finally, if `validationFailed` is true, it issues `cancel submit` to block the submission.
 
 ---
 
@@ -193,7 +193,7 @@ Runs on submission but only when `Manual_Edit_Flag == true` (this flag is set tr
 
 **What it does**
 
-On submission, checks the condition `input.Status == "Cancelled" && input.Cancellation_Reason == null || input.Cancellation_Reason == ""`. If it evaluates true, it shows the alert "Kindly provide the cancellation reason." and issues `cancel submit`. (Note: the missing parentheses around the `&&`/`||` mean this also cancels whenever Cancellation Reason is an empty string, even if Status is not "Cancelled" — worth flagging.)
+On submission, checks the condition `input.Status == "Cancelled" && input.Cancellation_Reason == null || input.Cancellation_Reason == ""`. If it evaluates true, it shows the alert "Kindly provide the cancellation reason." and issues `cancel submit`.
 
 ---
 
@@ -232,7 +232,7 @@ On form load, hides the **Dev Section**, sets **Manual Edit Flag** to `true` (wh
 
 **What it does**
 
-After a successful submission, sets **Manual Edit Flag** back to `false`. (Note: this shares the display name "dev section" with workflow #15 — they are distinct workflows differentiated only by trigger and link name. The first line reads `... - Successful form submissiondev section` with no clean ` - ` separator before the name, so the name is derived from the trailing text.)
+After a successful submission, sets **Manual Edit Flag** back to `false`.
 
 ---
 

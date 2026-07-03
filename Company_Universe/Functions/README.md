@@ -30,7 +30,7 @@ These functions perform bulk ingestion of a master CSV file (downloaded from Zoh
 - Loops over the fixed iterators `{"0","1","2","3"}` (i.e. up to 4 chunks of `chunkSize = 1000` → a maximum of 4000 rows). For each iteration it computes `startIndex = iter * 1000` and `endIndex = startIndex + 1000` (capped at `totalRows`), skips iterations whose `startIndex` is past the end, slices out `chunkRows`, and calls `thisapp.processChunk(chunkRows, startIndex, endIndex, "company")`.
 - After the loop it logs `"Company Master Processing Completed. Total Rows: " + totalRows`.
 - Builds an HTML completion email. The recipient depends on environment: if `zoho.appuri.contains("environment")` the mail goes to `parth@fristinetech.com`, otherwise to `arvind.prajapati@enamamc.com`. It then sends the mail from `parth@fristinetech.com` with a dated subject (`"Company Master Successfully Processed on <dd-MM-yyyy>"`).
-- Returns nothing (`void`). Note: because the loop is hard-coded to 4 iterations, only the first 4000 data rows are processed.
+- Returns nothing (`void`). The loop runs 4 iterations of 1000 rows (processing up to 4000 data rows).
 
 ---
 
@@ -48,7 +48,7 @@ These functions perform bulk ingestion of a master CSV file (downloaded from Zoh
 - Loops over `{"0","1","2","3"}`, slicing the data into up to four 1000-row chunks with the same start/end/cap logic, and calls `thisapp.processChunk(chunkRows, startIndex, endIndex, "price")` for each chunk.
 - Logs `"Price Master Processing Completed. Total Rows: " + totalRows`.
 - Builds an HTML completion email about the **Price Master** update, chooses the recipient the same way (`parth@fristinetech.com` when the app URI contains `"environment"`, otherwise `arvind.prajapati@enamamc.com`), and sends it from `parth@fristinetech.com` with subject `"Price Master Successfully Processed on <dd-MM-yyyy>"`.
-- Returns nothing (`void`). As with the company entry point, the fixed 4-iteration loop caps processing at 4000 data rows.
+- Returns nothing (`void`). As with the company entry point, the loop runs 4 iterations of 1000 rows (processing up to 4000 data rows).
 
 ---
 

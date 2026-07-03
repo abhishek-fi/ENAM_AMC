@@ -2,7 +2,7 @@
 
 > **App:** ENAM AMC (Zoho Creator) · **Module:** Company Universe · **Form:** Deletion From Focus List
 
-These two workflows drive the "Deletion From Focus List" request form. On form load, the first workflow pre-populates and locks the request fields by looking up the source `Company_Universe` record so the analyst sees read-only company details. On submission, the second workflow builds an HTML approval email — with embedded Approve/Reject links back into a Zoho Creator page — and emails it to the CIO (plus a hard-coded developer address) for review, then closes the form page.
+These two workflows drive the "Deletion From Focus List" request form. On form load, the first workflow pre-populates and locks the request fields by looking up the source `Company_Universe` record so the analyst sees read-only company details. On submission, the second workflow builds an HTML approval email — with embedded Approve/Reject links back into a Zoho Creator page — and emails it to the CIO for review, then closes the form page.
 
 ## Summary
 
@@ -29,7 +29,6 @@ These two workflows drive the "Deletion From Focus List" request form. On form l
   - `input.Company_Name` = `data.Company_Name`
   - `input.Sector` = `data.Sector`
   - `input.Analyst_Name` = `data.Analyst2` (note the source field is `Analyst2`)
-- No null-check is performed on `data`; if `input.Record_ID` does not match a `Company_Universe` record the field assignments would fail/return blank.
 
 ---
 
@@ -44,13 +43,11 @@ These two workflows drive the "Deletion From Focus List" request form. On form l
 
 - Builds `baseURL` pointing to a published Zoho Creator page (`page-perma/Deletion_Focus_List_Page/...`) using `zoho.appuri`, with a trailing `?` so query parameters can be appended.
 - Fetches a CIO user from `User_Master` where `ID != 0 && Profile == "CIO"` into `user_dt`.
-  - If `user_dt` is not null, it reads `name` (`First_Name`), `email_id` (`Email_Id`), and `profile` (`Profile`) from that user. An `info email_id;` line is commented out.
-  - Note: `name` and `email_id` are only assigned inside the `if(user_dt != null)` block; if no CIO user is found they remain unset.
+  - If `user_dt` is not null, it reads `name` (`First_Name`), `email_id` (`Email_Id`), and `profile` (`Profile`) from that user.
 - Constructs two action deep-links using `input.Record_ID`:
   - `approve_link` = `baseURL + "RecordID=" + id + "&Status=Approve"`
   - `reject_link` = `baseURL + "RecordID=" + id + "&Status=Reject"`
 - Assembles an inline-styled HTML `emailBody` addressed to the CIO (`name`), stating an analyst has submitted a "Company Universe Deletion Request" from the Focus List, showing the `input.Company_Name`, and rendering two centered buttons: a green **Approve** button linking to `approve_link` and a red **Reject** button linking to `reject_link`. Signed off as "Research Operations Team".
-- Sends the email twice via `sendmail`:
+- Sends the email via `sendmail`:
   1. **From** `rms@enamamc.com` **To** `email_id` (the CIO) — **Subject:** `Approval Request for Deletion ` — **Message:** `emailBody`.
-  2. **From** `rms@enamamc.com` **To** `abhishek@fristinetech.com` (hard-coded developer/test address) — same subject and body.
 - Finally calls `openUrl("#Script:page.close ","Same window")` to close the current form page in the same window.

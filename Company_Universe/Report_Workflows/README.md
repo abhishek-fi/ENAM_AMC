@@ -55,7 +55,7 @@ Opens the `Deletion_from_focus_list` form in a popup window, passing the selecte
 - **Workflow name:** `Edit records manually with edit url`
 - **Report:** In My Companies
 - **Trigger / Event:** On click of action item
-- **Status:** Not in use (first line notes `-- not in sue`, an apparent typo for "not in use")
+- **Status:** Not in use
 - **GitHub:** [Edit_records_manually_wit.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Company_Universe/Report_Workflows/Edit_records_manually_wit.js)
 
 **What it does**

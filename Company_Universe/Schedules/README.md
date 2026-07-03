@@ -2,7 +2,7 @@
 
 > **App:** ENAM AMC (Zoho Creator) · **Module:** Company Universe · **Section:** Scheduled Workflows
 
-This folder holds the scheduled workflows for the Company Universe module. They cover three areas: importing daily market data into the module from a WorkDrive CSV (`Company Universe CSV Data Scheduler`), refreshing the Company Master and Price Master data by delegating to app-level functions (`Update Company Master`, `Update Price Master`), and cleaning up file-upload fields by dropping files the user marked for removal (`Remove detailed presentation file`, `Remove_file`). The two Master-update schedules and the CSV importer run daily; the Company/Price Master ones additionally skip weekends (they only run Tuesday–Saturday, i.e. when `getDayOfWeek()` is not 1/Sunday or 7/Saturday). The two file-cleanup schedules are field/time-triggered ("Based on Remove Time") rather than fixed-clock schedules. None of these five schedules use the `zoho.appuri.contains("environment")` production guard, and none carry a comment marking them as disabled — all are treated as Active.
+This folder holds the scheduled workflows for the Company Universe module. They cover three areas: importing daily market data into the module from a WorkDrive CSV (`Company Universe CSV Data Scheduler`), refreshing the Company Master and Price Master data by delegating to app-level functions (`Update Company Master`, `Update Price Master`), and cleaning up file-upload fields by dropping files the user marked for removal (`Remove detailed presentation file`, `Remove_file`). The two Master-update schedules and the CSV importer run daily; the Company/Price Master ones additionally skip weekends (they only run Tuesday–Saturday, i.e. when `getDayOfWeek()` is not 1/Sunday or 7/Saturday). The two file-cleanup schedules are field/time-triggered ("Based on Remove Time") rather than fixed-clock schedules. None of these five schedules use the `zoho.appuri.contains("environment")` production guard; all are Active.
 
 ## Summary
 
@@ -29,13 +29,12 @@ This folder holds the scheduled workflows for the Company Universe module. They 
 
 Downloads a CSV file from Zoho WorkDrive and syncs its price data into the `Company_Universe` form.
 
-1. Downloads a fixed WorkDrive file (hard-coded `fileId = "mp02116163d97bf8b46bba90b38c2a8e6a48a"`) via `invokeurl` GET to `https://download.zoho.in/v1/workdrive/download/<fileId>` using the `zoho_workdrive_connection`.
+1. Downloads a WorkDrive file (`fileId = "mp02116163d97bf8b46bba90b38c2a8e6a48a"`) via `invokeurl` GET to `https://download.zoho.in/v1/workdrive/download/<fileId>` using the `zoho_workdrive_connection`.
 2. Converts the response to text and splits it into rows on newline (`toList("\n")`), then drops the first two rows (`subList(2, newrowsize)`) — i.e. header/preamble lines — keeping only data rows.
 3. For each data row, splits on comma into `new_column` and reads the ISIN from column index 6 (`isin_no`). Rows with an empty ISIN are skipped.
 4. For rows with an ISIN, it reads: company name (col 1), 52-week high price (col 10), 52-week low price (col 11), and closing price (`NDP_Close`, col 7). It then looks up existing records via `Company_Universe[CD_ISIN_No == isin_no]`.
    - **If a matching record exists** (`isinrecords.count(ID) > 0`): loops the matching records and updates `week_High_Date_amount`, `week_Low_Date_amount`, and `Closing_Price`.
    - **If no match exists:** inserts a new `Company_Universe` record with `Company_Name`, `Closing_Price`, `week_High_Date_amount`, `week_Low_Date_amount`, `CD_ISIN_No`, and `Added_User = zoho.loginuser`.
-5. Several lines are commented out and inactive: most `info` debug statements, and the `companyid`/`companyPrice` lookup lines (a `Price_Master[Company_Name == company_name]` query that is not used).
 
 ---
 
@@ -56,7 +55,6 @@ Cleans up the `Detailed_Presentation_File` multi-file field by removing the file
 2. For each such record, reads the `Removed_list_detail` value into `removeList` and builds a new empty `finalList`.
 3. Iterates every file `e` in `Detailed_Presentation_File`; if `e` is NOT contained in `removeList`, it is added to `finalList`. This effectively keeps only files not marked for removal.
 4. Assigns `finalList` back to `rec.Detailed_Presentation_File`, replacing the field with the filtered set.
-5. Contains several active `info` debug statements (`info removeList`, `info "///"`, `info e`, etc.) but no commented-out logic.
 
 ---
 
@@ -71,13 +69,12 @@ Cleans up the `Detailed_Presentation_File` multi-file field by removing the file
 
 **What it does**
 
-Same cleanup pattern as schedule #2, but applied to the `Pre_Assessment_Presentation1` file field. The first-line comment has no distinct human name segment beyond the link name, so the schedule name is taken as `Remove_file` (derived from the link name / trailing segment).
+Same cleanup pattern as schedule #2, but applied to the `Pre_Assessment_Presentation1` file field. The schedule name is `Remove_file` (derived from the link name).
 
 1. Fetches all `Company_Universe` records where `Removed_List != ""`.
 2. For each record, reads `Removed_List` into `removeList` and builds a new empty `finalList`.
 3. Iterates every file `e` in `Pre_Assessment_Presentation1`; if `e` is NOT contained in `removeList`, it is added to `finalList` (keeping only files not marked for removal).
 4. Assigns `finalList` back to `rec.Pre_Assessment_Presentation1`.
-5. Contains active `info` debug statements; no commented-out logic.
 
 ---
 

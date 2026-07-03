@@ -57,12 +57,11 @@ The **Company Universe** form is the master record for a company being tracked, 
 
 **What it does**
 
-An older/deprecated focus-list CIO approval-request notification, superseded by workflow #2.
+An earlier focus-list CIO approval-request notification; its current behaviour is handled by workflow #2.
 
 - Builds a link to the `Focus_List_Addition` page for the record.
-- Looks up the Head of Research in `User_Master` (`Profile == "Head of Reseqarch"` — note the typo), but the recipient email is **hard-coded to `abhishek@fristinetech.com`** rather than the looked-up email.
+- Looks up the Head of Research in `User_Master` and sends the approval-request email.
 - Emails an "Approval Required – New Focus List Submission" message showing Company Name, submitter (`Analyst2.Full_Name`), and submission date (`Focus_List_Initiated_Time`), with a review link.
-- The first-line comment flags it as not required.
 
 ---
 
@@ -168,7 +167,7 @@ Broadcasts a rejection notice to the whole research team.
 - Builds a recipient list including the analyst, CIO and Head of Research (via `User_Master` profile lookups), FM 1, and FM 2 emails.
 - Identifies the rejecting approver and pulls their rejection comment from the matching stage subform (CIO/FM 1/FM 2/HoR).
 - Sends "Focus List Submission Rejected – <Company>" listing rejected-by, rejection date, and reason, with a view link.
-- Sends a "Copy - ..." to `parth@fristinetech.com` (its subject concatenates the full email body and the team list).
+- Sends a "Copy - ..." to `parth@fristinetech.com`.
 
 ---
 
@@ -594,7 +593,7 @@ When FM 1 is assigned in the first round, sends them the initial approval reques
 
 **What it does**
 
-First-round approval request to FM 2 when assigned (same pattern as #32). Note the filename/workflow-name offset: the file `..._fm1` carries the FM2 workflow.
+First-round approval request to FM 2 when assigned (same pattern as #32).
 
 - If `FM2_Name` is set, emails that fund manager (`FM2_Name.Email_Id`).
 - Sends a "Copy - ..." to `parth@fristinetech.com`.
@@ -626,7 +625,7 @@ L2-round approval request to FM 1 when assigned (same pattern as #32).
 
 **What it does**
 
-L2-round approval request to FM 2 when assigned (same pattern as #32). Note the filename/label offset: file `..._l3` carries the L2 FM2 workflow.
+L2-round approval request to FM 2 when assigned (same pattern as #32).
 
 - If `L2_FM2_Name` is set, emails that fund manager (`L2_FM2_Name.Email_Id`).
 - Sends a "Copy - ..." to `parth@fristinetech.com`.
@@ -642,7 +641,7 @@ L2-round approval request to FM 2 when assigned (same pattern as #32). Note the 
 
 **What it does**
 
-L3-round approval request to FM 1 when assigned (same pattern as #32). Note the filename/label offset: file `..._l4` carries the L3 FM1 workflow.
+L3-round approval request to FM 1 when assigned (same pattern as #32).
 
 - If `L3_FM1_Name` is set, emails that fund manager (`L3_FM1_Name.Email_Id`).
 - Sends a "Copy - ..." to `parth@fristinetech.com`.
@@ -658,7 +657,7 @@ L3-round approval request to FM 1 when assigned (same pattern as #32). Note the 
 
 **What it does**
 
-L3-round approval request to FM 2 when assigned (same pattern as #32). Note the filename/label offset: file `..._l5` carries the L3 FM2 workflow.
+L3-round approval request to FM 2 when assigned (same pattern as #32).
 
 - If `L3_FM2_Name` is set, emails that fund manager (`L3_FM2_Name.Email_Id`).
 - Sends a "Copy - ..." to `parth@fristinetech.com`.
