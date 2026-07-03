@@ -1,0 +1,12 @@
+hide Record_ID;
+hide Enam_Coverage;
+disable Date_field;
+disable Dropped_from_Enam_Coverage;
+disable User_Master;
+disable Request_Type;
+disable Company_Name;
+disable Sector;
+data = Company_Universe[ID == input.Record_ID];
+input.Company_Name = data.Company_Name;
+input.Sector = data.Sector;
+input.User_Master = data.Analyst2;
