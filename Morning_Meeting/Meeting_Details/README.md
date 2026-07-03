@@ -2,7 +2,7 @@
 
 > **App:** ENAM AMC (Zoho Creator) · **Module:** Morning Meeting · **Form:** Meeting Details
 
-The **Meeting Details** form captures the morning meeting record — meeting title, date, and an **Analyst Meeting Attendance** subform tracking each analyst's invitation, attendance, mode, reasons for non-attendance, and availability for the next day's meeting. Its two workflows are both "on load of the form" access-control rules that make the form effectively read-only. One blocks record creation entirely (with an alert), and the other disables the header fields and every column of the attendance subform so no one can edit the data through this form.
+The **Meeting Details** form captures the morning meeting record — meeting title, date, and an **Analyst Meeting Attendance** subform tracking each analyst's invitation, attendance, mode, reasons for non-attendance, and availability for the next day's meeting. Its workflows make the form effectively read-only. Two are Deluge "on load of the form" access-control rules — one blocks record creation entirely (with an alert), and the other disables the header fields and every column of the attendance subform. A third is a no-code **Field rule** (configured via Zoho Creator) that hides the add/delete controls on the attendance subform so no rows can be inserted or removed through this form.
 
 ## Summary
 
@@ -10,6 +10,7 @@ The **Meeting Details** form captures the morning meeting record — meeting tit
 |---|------------------|---------------|-----------------|--------|
 | 1 | `Form_View_Only_No_One_can` | Form View Only No One can | Created — Load of the form | [Form_View_Only_No_One_can.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Meeting_Details/Form_View_Only_No_One_can.js) |
 | 2 | `meeting_details_read_only` | meeting details read only | Created or Edited — Load of the form | [meeting_details_read_only.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Meeting_Details/meeting_details_read_only.js) |
+| 3 | `Analyst_subform_not_edita` (screenshot) | Analyst subform not editable | Created or Edited · Field rule (form load & field input) | [Analyst_subform_not_edita.png](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Meeting_Details/Analyst_subform_not_edita.png) |
 
 ## Workflow Details
 
@@ -58,6 +59,23 @@ No fields are populated, no records or emails are created, and no submit validat
 
 ---
 
-## Reference Screenshots
+## Field Rule Workflows (no-code configuration)
 
-- [Analyst_subform_not_edita.png](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Meeting_Details/Analyst_subform_not_edita.png) — Likely a screenshot of the form config showing the **Analyst Meeting Attendance** subform set to non-editable (read-only), corresponding to the field-disabling workflow above.
+These workflows are built with Zoho Creator's built-in **Field rules** (no Deluge script). Their actions execute on form load and whenever a field participating in a condition is changed by the user. The linked screenshot captures the exact configuration.
+
+### 3. `Analyst subform not editable`
+
+- **Link name (file):** `Analyst_subform_not_edita` (screenshot)
+- **Workflow name:** `Analyst subform not editable`
+- **Type:** Field rule — configured via Zoho Creator (no code)
+- **Trigger / Event:** Created or Edited — on form load and on user input of participating fields
+- **Screenshot:** [Analyst_subform_not_edita.png](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Meeting_Details/Analyst_subform_not_edita.png)
+
+**What it does**
+
+Runs unconditionally ("Execute without condition") and locks the **Analyst_Meeting_Attendance** subform so its rows cannot be added or removed on this form:
+
+- **Hide subform delete entry** for `Analyst_Meeting_Attendance` — users cannot delete existing rows.
+- **Hide subform add entry** for `Analyst_Meeting_Attendance` — users cannot add new rows.
+
+Together with the `meeting details read only` script workflow (which disables every field), this makes the attendance subform fully view-only.

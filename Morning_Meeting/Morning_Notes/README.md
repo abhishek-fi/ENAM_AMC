@@ -2,7 +2,7 @@
 
 > **App:** ENAM AMC (Zoho Creator) · **Module:** Morning Meeting · **Form:** Morning Notes
 
-The Morning Notes form captures analyst notes raised for the morning meeting, keyed either to a **Company** or a **Sector**. Its workflows dynamically reshape the form based on the note type, restrict the selectable companies to those an analyst is authorised for, auto-populate company details (analyst, portfolio flag, price, recommendation) from master data, control edit access to already-stored records, hide internal/development fields, run type-specific submission validations, and — only when validation passes — mark the record as ready and store it. There are 8 form workflows and 1 reference screenshot.
+The Morning Notes form captures analyst notes raised for the morning meeting, keyed either to a **Company** or a **Sector**. Its workflows dynamically reshape the form based on the note type, restrict the selectable companies to those an analyst is authorised for, auto-populate company details (analyst, portfolio flag, price, recommendation) from master data, control edit access to already-stored records, hide internal/development fields, run type-specific submission validations, and — only when validation passes — mark the record as ready and store it. There are 8 Deluge form workflows plus 1 no-code **Field rule** workflow (configured via Zoho Creator).
 
 ## Summary
 
@@ -16,6 +16,7 @@ The Morning Notes form captures analyst notes raised for the morning meeting, ke
 | 6 | `FI_AB_Submit_it_as_Stored` | FI_AB Submit it as Stored | Created or Edited – Validations on form submission | [FI_AB_Submit_it_as_Stored.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Notes/FI_AB_Submit_it_as_Stored.js) |
 | 7 | `FI_AB_Type_based_layout_r` | FI_AB Type based layout rules | Created or Edited – User input of Company / Sector? | [FI_AB_Type_based_layout_r.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Notes/FI_AB_Type_based_layout_r.js) |
 | 8 | `FI_AB_populate_company_de` | FI_AB populate company details | Created or Edited – User input of Company Name | [FI_AB_populate_company_de.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Notes/FI_AB_populate_company_de.js) |
+| 9 | `show_hide_fields_based_on` (screenshot) | show/hide fields based on conditions | Created or Edited · Field rule (form load & field input) | [show_hide_fields_based_on.png](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Notes/show_hide_fields_based_on.png) |
 
 ## Workflow Details
 
@@ -166,6 +167,21 @@ When the user selects a company, auto-fills analyst and price/portfolio/recommen
 
 ---
 
-## Reference Screenshots
+## Field Rule Workflows (no-code configuration)
 
-- **[show_hide_fields_based_on.png](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Notes/show_hide_fields_based_on.png)** — Form configuration screenshot illustrating the show/hide field behaviour driven by the Company/Sector selection (relates to the Layout Rules and Type-based layout rules workflows).
+These workflows are built with Zoho Creator's built-in **Field rules** (no Deluge script). Their actions execute on form load and whenever a field participating in a condition is changed by the user. The linked screenshot captures the exact configuration.
+
+### 9. `show/hide fields based on conditions`
+
+- **Link name (file):** `show_hide_fields_based_on` (screenshot)
+- **Workflow name:** `show/hide fields based on conditions`
+- **Type:** Field rule — configured via Zoho Creator (no code)
+- **Trigger / Event:** Created or Edited — on form load and on user input of participating fields
+- **Screenshot:** [show_hide_fields_based_on.png](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Notes/show_hide_fields_based_on.png)
+
+**What it does**
+
+Shows/hides the sector-vs-company fields based on the note type selection. This is the no-code counterpart to the `FI_AB Layout Rules` / `FI_AB Type based layout rules` script workflows:
+
+- **If `Company_Sector == "Sector"`:** show **Sector_Name** and **Tag**.
+- **If `Sector_Name` is not null:** hide **Target_price**, **Recommendation**, **Return_field**, and **Price_as_on** (the company-specific fields that don't apply to a sector note).

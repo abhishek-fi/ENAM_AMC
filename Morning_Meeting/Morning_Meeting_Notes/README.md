@@ -2,7 +2,7 @@
 
 > **App:** ENAM AMC (Zoho Creator) · **Module:** Morning Meeting · **Form:** Morning Meeting Notes
 
-This form captures each analyst's participation in a morning meeting — whether they attended, in what mode, and (if they did) their morning notes (sector/company observations, portfolio-stock and new-idea flags). The workflows enforce role-based access on record creation, disable key fields during edits, mandate conditional fields (meeting mode vs. not-attended reason, and sector-related fields), set default values and hide subform columns on load, and — on successful submission — sync the analyst's attendance back into the linked Meeting Details record and roll "not attending" entries up into a master record.
+This form captures each analyst's participation in a morning meeting — whether they attended, in what mode, and (if they did) their morning notes (sector/company observations, portfolio-stock and new-idea flags). The workflows enforce role-based access on record creation, disable key fields during edits, mandate conditional fields (meeting mode vs. not-attended reason, and sector-related fields), set default values and hide subform columns on load, and — on successful submission — sync the analyst's attendance back into the linked Meeting Details record and roll "not attending" entries up into a master record. In addition to the 8 Deluge workflows, there are 3 no-code **Field rule** workflows (configured via Zoho Creator) that show/hide fields and lock the notes subform.
 
 ## Summary
 
@@ -16,6 +16,9 @@ This form captures each analyst's participation in a morning meeting — whether
 | 6 | `set_mandatory_field_valid` | set mandatory field validation | Created or Edited — Validations on form submission | [set_mandatory_field_valid.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Meeting_Notes/set_mandatory_field_valid.js) |
 | 7 | `update_meeting_details_in` | update meeting details in subfrom | Created or Edited — Successful form submission | [update_meeting_details_in.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Meeting_Notes/update_meeting_details_in.js) |
 | 8 | `update_new_Idea` | update new Idea | Created or Edited — User input of Morning Notes.Portfolio_Stock | [update_new_Idea.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Meeting_Notes/update_new_Idea.js) |
+| 9 | `Hide_and_show_fields` (screenshot) | Hide and show fields | Created or Edited · Field rule (form load & field input) | [Hide_and_show_fields.png](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Meeting_Notes/Hide_and_show_fields.png) |
+| 10 | `Hide_meeting_notes_subfor1` (screenshot) | Hide meeting notes subform | Created or Edited · Field rule (form load & field input) | [Hide_meeting_notes_subfor1.png](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Meeting_Notes/Hide_meeting_notes_subfor1.png) |
+| 11 | `Meeting_Notes_Subform_Add` (screenshot) | Meeting Notes Subform Add and Delete Entry Hide | Created or Edited · Field rule (form load & field input) | [Meeting_Notes_Subform_Add.png](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Meeting_Notes/Meeting_Notes_Subform_Add.png) |
 
 ## Workflow Details
 
@@ -170,8 +173,56 @@ A field-level action on the `Morning_Notes` subform: when the user sets `Portfol
 
 ---
 
-## Reference Screenshots
+## Field Rule Workflows (no-code configuration)
 
-- [Hide_and_show_fields.png](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Meeting_Notes/Hide_and_show_fields.png) — Form configuration showing the hide/show field rules on the Morning Meeting Notes form.
-- [Hide_meeting_notes_subfor1.png](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Meeting_Notes/Hide_meeting_notes_subfor1.png) — Configuration for hiding the meeting-notes subform (relates to the `Raised_request_default_va` load workflow hiding `Morning_Notes.Meet_Note`).
-- [Meeting_Notes_Subform_Add.png](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Meeting_Notes/Meeting_Notes_Subform_Add.png) — Configuration of the Meeting Notes subform add behavior.
+These workflows are built with Zoho Creator's built-in **Field rules** (no Deluge script). Their actions execute on form load and whenever a field participating in a condition is changed by the user. The linked screenshots capture the exact configuration.
+
+### 9. `Hide and show fields`
+
+- **Link name (file):** `Hide_and_show_fields` (screenshot)
+- **Workflow name:** `Hide and show fields`
+- **Type:** Field rule — configured via Zoho Creator (no code)
+- **Trigger / Event:** Created or Edited — on form load and on user input of participating fields
+- **Screenshot:** [Hide_and_show_fields.png](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Meeting_Notes/Hide_and_show_fields.png)
+
+**What it does**
+
+Shows/hides fields based on the attendance answer, and always hides the internal fields:
+
+- **If `Have_you_attended_today_s_meeting` contains "Yes":** show **Mode**, hide **Not_attended_reason**.
+- **If it contains "No":** show **Not_attended_reason**, hide **Mode**.
+- **Always (no condition):** hide **Developer_Section**.
+- **Always (no condition):** hide **Raised_Request**.
+
+---
+
+### 10. `Hide meeting notes subform`
+
+- **Link name (file):** `Hide_meeting_notes_subfor1` (screenshot)
+- **Workflow name:** `Hide meeting notes subform`
+- **Type:** Field rule — configured via Zoho Creator (no code)
+- **Trigger / Event:** Created or Edited — on form load and on user input of participating fields
+- **Screenshot:** [Hide_meeting_notes_subfor1.png](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Meeting_Notes/Hide_meeting_notes_subfor1.png)
+
+**What it does**
+
+Hides the notes subform when the analyst did not attend:
+
+- **If `Have_you_attended_today_s_meeting == "No"`:** hide the **Morning_Notes** subform (a non-attendee has no notes to record).
+
+---
+
+### 11. `Meeting Notes Subform Add and Delete Entry Hide`
+
+- **Link name (file):** `Meeting_Notes_Subform_Add` (screenshot)
+- **Workflow name:** `Meeting Notes Subform Add and Delete Entry Hide`
+- **Type:** Field rule — configured via Zoho Creator (no code)
+- **Trigger / Event:** Created or Edited — on form load and on user input of participating fields
+- **Screenshot:** [Meeting_Notes_Subform_Add.png](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Meeting_Notes/Meeting_Notes_Subform_Add.png)
+
+**What it does**
+
+Runs unconditionally ("Execute without condition") and locks the row structure of the **Morning_Notes** subform:
+
+- **Hide subform add entry** for `Morning_Notes` — users cannot add new rows.
+- **Hide subform delete entry** for `Morning_Notes` — users cannot delete existing rows.

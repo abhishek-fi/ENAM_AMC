@@ -2,7 +2,7 @@
 
 > **App:** ENAM AMC (Zoho Creator) · **Module:** Morning Meeting · **Form:** Morning Meeting Attendance
 
-This form captures each analyst's attendance response for a Morning Meeting ("Will you be able to join tomorrow's meeting?"), along with the mode, location, and reason for not attending. The workflows enforce that only the system account can create/edit records, mandate conditional fields based on the attendance answer, mirror the response back into the parent Meeting Details record's attendance sub-form, maintain a "not applied" list in the Master, and redirect the user to the attendance report after submission.
+This form captures each analyst's attendance response for a Morning Meeting ("Will you be able to join tomorrow's meeting?"), along with the mode, location, and reason for not attending. The workflows enforce that only the system account can create/edit records, mandate conditional fields based on the attendance answer, mirror the response back into the parent Meeting Details record's attendance sub-form, maintain a "not applied" list in the Master, and redirect the user to the attendance report after submission. Alongside the 8 Deluge workflows there are 2 no-code **Field rule** workflows (configured via Zoho Creator) that hide the developer section and show/hide the mode/reason/location fields based on the attendance answer.
 
 ## Summary
 
@@ -16,6 +16,8 @@ This form captures each analyst's attendance response for a Morning Meeting ("Wi
 | 6 | `Not_editable_meeting_deta` | Not editable meeting details and Analyst | Created or Edited · Load of the form | [Not_editable_meeting_deta.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Meeting_Attendance/Not_editable_meeting_deta.js) |
 | 7 | `Redirect_to_the_meeting_p` | Redirect to the meeting page | Created or Edited · Successful form submission | [Redirect_to_the_meeting_p.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Meeting_Attendance/Redirect_to_the_meeting_p.js) |
 | 8 | `data_populate_in_meeting_` | data populate in meeting details subfrom | Created or Edited · Successful form submission | [data_populate_in_meeting_.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Meeting_Attendance/data_populate_in_meeting_.js) |
+| 9 | `Hide_Developer_Section` (screenshot) | Hide Developer Section | Created or Edited · Field rule (form load & field input) | [Hide_Developer_Section.png](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Meeting_Attendance/Hide_Developer_Section.png) |
+| 10 | `show_and_hide_fields` (screenshot) | show and hide fields | Created or Edited · Field rule (form load & field input) | [show_and_hide_fields.png](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Meeting_Attendance/show_and_hide_fields.png) |
 
 ## Workflow Details
 
@@ -153,7 +155,36 @@ Mirrors this attendance record's values back into the parent Meeting Details rec
 
 ---
 
-## Reference Screenshots
+## Field Rule Workflows (no-code configuration)
 
-- [Hide_Developer_Section.png](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Meeting_Attendance/Hide_Developer_Section.png) — form configuration screenshot showing the "Hide Developer Section" setup.
-- [show_and_hide_fields.png](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Meeting_Attendance/show_and_hide_fields.png) — form configuration screenshot showing the show/hide fields rules.
+These workflows are built with Zoho Creator's built-in **Field rules** (no Deluge script). Their actions execute on form load and whenever a field participating in a condition is changed by the user. The linked screenshots capture the exact configuration.
+
+### 9. `Hide Developer Section`
+
+- **Link name (file):** `Hide_Developer_Section` (screenshot)
+- **Workflow name:** `Hide Developer Section`
+- **Type:** Field rule — configured via Zoho Creator (no code)
+- **Trigger / Event:** Created or Edited — on form load and on user input of participating fields
+- **Screenshot:** [Hide_Developer_Section.png](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Meeting_Attendance/Hide_Developer_Section.png)
+
+**What it does**
+
+Runs unconditionally ("Execute without condition") and hides the **Developer_Section** field so it never appears on the form.
+
+---
+
+### 10. `show and hide fields`
+
+- **Link name (file):** `show_and_hide_fields` (screenshot)
+- **Workflow name:** `show and hide fields`
+- **Type:** Field rule — configured via Zoho Creator (no code)
+- **Trigger / Event:** Created or Edited — on form load and on user input of participating fields
+- **Screenshot:** [show_and_hide_fields.png](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Meeting_Attendance/show_and_hide_fields.png)
+
+**What it does**
+
+Shows/hides fields conditionally based on the analyst's answer to **Will_you_be_able_to_join_tomorrow**:
+
+- **== "Yes":** show **Mode**, hide **Not_attended_reason**.
+- **== "No":** show **Not_attended_reason**, hide **Mode** and **Location**.
+- **== "Not Responded":** hide **Mode** and **Not_attended_reason**.
