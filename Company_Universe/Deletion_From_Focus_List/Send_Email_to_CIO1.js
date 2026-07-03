@@ -36,7 +36,7 @@ sendmail
 sendmail
 [
 	from :"rms@enamamc.com"
-	to :"abhishek@fristinetech.com"
+	to :"parth@fristinetech.com"
 	subject :"Approval Request for Deletion "
 	message :emailBody
 ]
