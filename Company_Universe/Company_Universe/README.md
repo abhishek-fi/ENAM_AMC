@@ -48,8 +48,9 @@ The **Company Universe** form is the master record for a company being tracked, 
 
 ## Workflow Details
 
-### 1. `DisableFI_AB_Focus_List_C`
+### 1. `DisableFI_AB Focus List CIO Approval Request email`
 
+- **Link name (file):** `DisableFI_AB_Focus_List_C`
 - **Workflow name:** `DisableFI_AB Focus List CIO Approval Request email` (marked "Not required")
 - **Trigger / Event:** On update of `Focus List In-Progress` (user input of Focus List In-Progress)
 - **GitHub:** [DisableFI_AB_Focus_List_C.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Company_Universe/Company_Universe/DisableFI_AB_Focus_List_C.js)
@@ -65,8 +66,9 @@ An older/deprecated focus-list CIO approval-request notification, superseded by 
 
 ---
 
-### 2. `FI_AB_Approval_request_em`
+### 2. `FI_AB Approval request email`
 
+- **Link name (file):** `FI_AB_Approval_request_em`
 - **Workflow name:** `FI_AB Approval request email`
 - **Trigger / Event:** On update of `Focus List Stage` (runs only when `Focus_List_In_Progress == true` and stage is "Submitted for Review", "CIO Approved", "FM 1 Approved", or "FM 2 Approved")
 - **GitHub:** [FI_AB_Approval_request_em.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Company_Universe/Company_Universe/FI_AB_Approval_request_em.js)
@@ -84,8 +86,9 @@ Routes the focus-list approval request to the next approver in the chain based o
 
 ---
 
-### 3. `FI_AB_Disable_fields`
+### 3. `FI_AB Disable fields`
 
+- **Link name (file):** `FI_AB_Disable_fields`
 - **Workflow name:** `FI_AB Disable fields`
 - **Trigger / Event:** On load of the form (Created or Edited)
 - **GitHub:** [FI_AB_Disable_fields.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Company_Universe/Company_Universe/FI_AB_Disable_fields.js)
@@ -98,8 +101,9 @@ Locks the externally-sourced company identifier fields so they cannot be edited 
 
 ---
 
-### 4. `FI_AB_Disable_fields_base`
+### 4. `FI_AB Disable fields based on loggedin user`
 
+- **Link name (file):** `FI_AB_Disable_fields_base`
 - **Workflow name:** `FI_AB Disable fields based on loggedin user`
 - **Trigger / Event:** On load of the form (Edited)
 - **GitHub:** [FI_AB_Disable_fields_base.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Company_Universe/Company_Universe/FI_AB_Disable_fields_base.js)
@@ -116,8 +120,9 @@ Restricts each fund manager to editing only their own comment boxes across the L
 
 ---
 
-### 5. `FI_AB_Focus_List_Added_em`
+### 5. `FI_AB Focus List Added email`
 
+- **Link name (file):** `FI_AB_Focus_List_Added_em`
 - **Workflow name:** `FI_AB Focus List Added email`
 - **Trigger / Event:** On update of `Part of Focus List` (runs only when `Part_of_Focus_List == "Yes"`)
 - **GitHub:** [FI_AB_Focus_List_Added_em.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Company_Universe/Company_Universe/FI_AB_Focus_List_Added_em.js)
@@ -131,8 +136,9 @@ Notifies the analyst that a company has been added to the focus list.
 
 ---
 
-### 6. `FI_AB_Focus_List_Clarific`
+### 6. `FI_AB Focus List Clarification Request email`
 
+- **Link name (file):** `FI_AB_Focus_List_Clarific`
 - **Workflow name:** `FI_AB Focus List Clarification Request email`
 - **Trigger / Event:** On update of `Focus List Stage` (runs only when `Focus_List_In_Progress == true` and stage is "CIO Clarification Request", "FM 1 Clarification Request", "FM 2 Clarification Request", or "HoR Clarification Request")
 - **GitHub:** [FI_AB_Focus_List_Clarific.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Company_Universe/Company_Universe/FI_AB_Focus_List_Clarific.js)
@@ -148,8 +154,9 @@ When an approver asks the analyst for clarification, emails the analyst with the
 
 ---
 
-### 7. `FI_AB_Focus_List_Rejected`
+### 7. `FI_AB Focus List Rejected notification`
 
+- **Link name (file):** `FI_AB_Focus_List_Rejected`
 - **Workflow name:** `FI_AB Focus List Rejected notification`
 - **Trigger / Event:** On update of `Focus List Stage` (runs only when stage is "Rejected by CIO", "Rejected by FM 1", "Rejected by FM 2", or "Rejected by HoR")
 - **GitHub:** [FI_AB_Focus_List_Rejected.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Company_Universe/Company_Universe/FI_AB_Focus_List_Rejected.js)
@@ -165,8 +172,9 @@ Broadcasts a rejection notice to the whole research team.
 
 ---
 
-### 8. `FI_AB_Hide_Fields`
+### 8. `FI_AB Hide Fields`
 
+- **Link name (file):** `FI_AB_Hide_Fields`
 - **Workflow name:** `FI_AB Hide Fields`
 - **Trigger / Event:** On load of the form (Created or Edited)
 - **GitHub:** [FI_AB_Hide_Fields.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Company_Universe/Company_Universe/FI_AB_Hide_Fields.js)
@@ -179,8 +187,9 @@ Hides internal process-tracking / flag fields from the form view:
 
 ---
 
-### 9. `FI_AB_Mandate_fields_duri2`
+### 9. `FI_AB Mandate fields during transition L1 Review`
 
+- **Link name (file):** `FI_AB_Mandate_fields_duri2`
 - **Workflow name:** `FI_AB Mandate fields during transition L1 Review` (marked "Disabled")
 - **Trigger / Event:** On form submission (validation)
 - **GitHub:** [FI_AB_Mandate_fields_duri2.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Company_Universe/Company_Universe/FI_AB_Mandate_fields_duri2.js)
@@ -191,8 +200,9 @@ Entirely commented out — no active logic. It was intended to require FM names 
 
 ---
 
-### 10. `FI_AB_Mandate_fields_duri3`
+### 10. `FI_AB Mandate fields during L2 Approval`
 
+- **Link name (file):** `FI_AB_Mandate_fields_duri3`
 - **Workflow name:** `FI_AB Mandate fields during L2 Approval` (marked "Disabled" in comment, but the code body is active)
 - **Trigger / Event:** On form submission (validation), when `Manual_Edit_Flag == false` and `Custom_Stage == "Submitted for L2 Review"`
 - **GitHub:** [FI_AB_Mandate_fields_duri3.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Company_Universe/Company_Universe/FI_AB_Mandate_fields_duri3.js)
@@ -207,8 +217,9 @@ Validates that the L2 review section and the logged-in reviewer's own L2 comment
 
 ---
 
-### 11. `FI_AB_Mandate_fields_duri4`
+### 11. `FI_AB Mandate fields during L1 Approval`
 
+- **Link name (file):** `FI_AB_Mandate_fields_duri4`
 - **Workflow name:** `FI_AB Mandate fields during L1 Approval` (marked "Disabled" in comment, but the code body is active)
 - **Trigger / Event:** On form submission (validation), when `Manual_Edit_Flag == false` and `Custom_Stage == "Submitted for L1 Review"`
 - **GitHub:** [FI_AB_Mandate_fields_duri4.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Company_Universe/Company_Universe/FI_AB_Mandate_fields_duri4.js)
@@ -223,8 +234,9 @@ L1-round equivalent of #10.
 
 ---
 
-### 12. `FI_AB_Mandate_fields_duri5`
+### 12. `FI_AB Mandate fields during L3 Approval`
 
+- **Link name (file):** `FI_AB_Mandate_fields_duri5`
 - **Workflow name:** `FI_AB Mandate fields during L3 Approval` (marked "Disabled" in comment, but the code body is active)
 - **Trigger / Event:** On form submission (validation), when `Manual_Edit_Flag == false` and `Custom_Stage == "Submitted for L3 Review"`
 - **GitHub:** [FI_AB_Mandate_fields_duri5.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Company_Universe/Company_Universe/FI_AB_Mandate_fields_duri5.js)
@@ -238,8 +250,9 @@ L3-round comment validation (no section-level fields required here).
 
 ---
 
-### 13. `FI_PB_Focus_List_Clarific`
+### 13. `FI_PB Focus List Clarification Provided Email`
 
+- **Link name (file):** `FI_PB_Focus_List_Clarific`
 - **Workflow name:** `FI_PB Focus List Clarification Provided Email`
 - **Trigger / Event:** On update of `Focus List Stage` (runs only when `Focus_List_In_Progress == true` and stage is "Clarification to CIO", "Clarification to FM 1", "Clarification to FM 2", or "Clarification to HoR")
 - **GitHub:** [FI_PB_Focus_List_Clarific.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Company_Universe/Company_Universe/FI_PB_Focus_List_Clarific.js)
@@ -254,8 +267,9 @@ The reverse of #6: when the analyst provides clarification back to an approver, 
 
 ---
 
-### 14. `Hide_Filed`
+### 14. `Hide Filed`
 
+- **Link name (file):** `Hide_Filed`
 - **Workflow name:** `Hide Filed`
 - **Trigger / Event:** On load of the form (Created or Edited)
 - **GitHub:** [Hide_Filed.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Company_Universe/Company_Universe/Hide_Filed.js)
@@ -268,8 +282,9 @@ Hides the deletion / removal-tracking fields from the form:
 
 ---
 
-### 15. `Mandate_fields2`
+### 15. `Mandate fields`
 
+- **Link name (file):** `Mandate_fields2`
 - **Workflow name:** `Mandate fields` (marked "Not required, handled in widget")
 - **Trigger / Event:** On form submission (validation)
 - **GitHub:** [Mandate_fields2.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Company_Universe/Company_Universe/Mandate_fields2.js)
@@ -280,8 +295,9 @@ Entirely commented out — no active logic. It was intended to require condition
 
 ---
 
-### 16. `Mandate_fields3`
+### 16. `Mandate fields`
 
+- **Link name (file):** `Mandate_fields3`
 - **Workflow name:** `Mandate fields` (marked "Not required")
 - **Trigger / Event:** On form submission (validation)
 - **GitHub:** [Mandate_fields3.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Company_Universe/Company_Universe/Mandate_fields3.js)
@@ -292,8 +308,9 @@ Entirely commented out — no active logic. It was intended to require amount fi
 
 ---
 
-### 17. `Send_Email_On_L3_FM1_Stat`
+### 17. `Send Email On L3 FM1 Status`
 
+- **Link name (file):** `Send_Email_On_L3_FM1_Stat`
 - **Workflow name:** `Send Email On L3 FM1 Status`
 - **Trigger / Event:** On update of `L3 FM1 Status`
 - **GitHub:** [Send_Email_On_L3_FM1_Stat.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Company_Universe/Company_Universe/Send_Email_On_L3_FM1_Stat.js)
@@ -309,8 +326,9 @@ Handles the outcome of FM 1's L3-round review. This is one of the recurring "rev
 
 ---
 
-### 18. `Send_Email_On_Status_L2_F`
+### 18. `Send Email On Status L2 FM2 Status`
 
+- **Link name (file):** `Send_Email_On_Status_L2_F`
 - **Workflow name:** `Send Email On Status L2 FM2 Status`
 - **Trigger / Event:** On update of `L2 FM2 Status`
 - **GitHub:** [Send_Email_On_Status_L2_F.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Company_Universe/Company_Universe/Send_Email_On_Status_L2_F.js)
@@ -326,8 +344,9 @@ L2-round outcome for FM 2, same three-branch structure as #17.
 
 ---
 
-### 19. `Send_Email_on_FM1_Status`
+### 19. `Send Email on FM1 Status`
 
+- **Link name (file):** `Send_Email_on_FM1_Status`
 - **Workflow name:** `Send Email on FM1 Status`
 - **Trigger / Event:** On update of `FM1 Status`
 - **GitHub:** [Send_Email_on_FM1_Status.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Company_Universe/Company_Universe/Send_Email_on_FM1_Status.js)
@@ -343,8 +362,9 @@ First-round (L1) outcome for FM 1, same three-branch structure as #17.
 
 ---
 
-### 20. `Send_Email_on_FM2_Status`
+### 20. `Send Email on FM2 Status`
 
+- **Link name (file):** `Send_Email_on_FM2_Status`
 - **Workflow name:** `Send Email on FM2 Status`
 - **Trigger / Event:** On update of `FM2 Status`
 - **GitHub:** [Send_Email_on_FM2_Status.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Company_Universe/Company_Universe/Send_Email_on_FM2_Status.js)
@@ -360,8 +380,9 @@ First-round (L1) outcome for FM 2, same three-branch structure as #17.
 
 ---
 
-### 21. `Send_Email_on_L2_FM1_Stat`
+### 21. `Send Email on L2 FM1 Status`
 
+- **Link name (file):** `Send_Email_on_L2_FM1_Stat`
 - **Workflow name:** `Send Email on L2 FM1 Status`
 - **Trigger / Event:** On update of `L2 FM1 Status`
 - **GitHub:** [Send_Email_on_L2_FM1_Stat.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Company_Universe/Company_Universe/Send_Email_on_L2_FM1_Stat.js)
@@ -377,8 +398,9 @@ L2-round outcome for FM 1, same three-branch structure as #17. Uses status field
 
 ---
 
-### 22. `Send_Email_on_L2_FM3_Name`
+### 22. `Send Email on L2 FM3 Name`
 
+- **Link name (file):** `Send_Email_on_L2_FM3_Name`
 - **Workflow name:** `Send Email on L2 FM3 Name`
 - **Trigger / Event:** On update of `L2 FM3 Name`
 - **GitHub:** [Send_Email_on_L2_FM3_Name.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Company_Universe/Company_Universe/Send_Email_on_L2_FM3_Name.js)
@@ -392,8 +414,9 @@ When an L2 FM 3 reviewer is assigned, notifies them of a new submission to revie
 
 ---
 
-### 23. `Send_Email_on_L2_FM3_Stat`
+### 23. `Send Email on L2 FM3 Status`
 
+- **Link name (file):** `Send_Email_on_L2_FM3_Stat`
 - **Workflow name:** `Send Email on L2 FM3 Status`
 - **Trigger / Event:** On update of `L2 FM3 Status`
 - **GitHub:** [Send_Email_on_L2_FM3_Stat.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Company_Universe/Company_Universe/Send_Email_on_L2_FM3_Stat.js)
@@ -409,8 +432,9 @@ L2-round outcome for FM 3, same three-branch structure as #17.
 
 ---
 
-### 24. `Send_Email_on_L2_HoR_Stat`
+### 24. `Send Email on L2 HoR Status`
 
+- **Link name (file):** `Send_Email_on_L2_HoR_Stat`
 - **Workflow name:** `Send Email on L2 HoR Status`
 - **Trigger / Event:** On update of `L2 HoR Status`
 - **GitHub:** [Send_Email_on_L2_HoR_Stat.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Company_Universe/Company_Universe/Send_Email_on_L2_HoR_Stat.js)
@@ -425,8 +449,9 @@ Handles the Head of Research decision in the L2 round.
 
 ---
 
-### 25. `Send_Email_on_L3_FM2_Stat`
+### 25. `Send Email on L3 FM2 Status`
 
+- **Link name (file):** `Send_Email_on_L3_FM2_Stat`
 - **Workflow name:** `Send Email on L3 FM2 Status`
 - **Trigger / Event:** On update of `L3 FM2 Status`
 - **GitHub:** [Send_Email_on_L3_FM2_Stat.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Company_Universe/Company_Universe/Send_Email_on_L3_FM2_Stat.js)
@@ -442,8 +467,9 @@ L3-round outcome for FM 2, same three-branch structure as #17.
 
 ---
 
-### 26. `Send_Email_on_L3_FM3_Stat`
+### 26. `Send Email on L3 FM3 Status`
 
+- **Link name (file):** `Send_Email_on_L3_FM3_Stat`
 - **Workflow name:** `Send Email on L3 FM3 Status`
 - **Trigger / Event:** On update of `L3 FM3 Status`
 - **GitHub:** [Send_Email_on_L3_FM3_Stat.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Company_Universe/Company_Universe/Send_Email_on_L3_FM3_Stat.js)
@@ -459,8 +485,9 @@ L3-round outcome for FM 3, same three-branch structure as #17.
 
 ---
 
-### 27. `Send_Email_on_L3_HoR_Stat`
+### 27. `Send Email on L3 HoR Status`
 
+- **Link name (file):** `Send_Email_on_L3_HoR_Stat`
 - **Workflow name:** `Send Email on L3 HoR Status`
 - **Trigger / Event:** On update of `L3 HoR Status`
 - **GitHub:** [Send_Email_on_L3_HoR_Stat.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Company_Universe/Company_Universe/Send_Email_on_L3_HoR_Stat.js)
@@ -475,8 +502,9 @@ Head of Research decision in the L3 round (same structure as #24).
 
 ---
 
-### 28. `Send_Email_to_Analyst1`
+### 28. `Send Email to Analyst`
 
+- **Link name (file):** `Send_Email_to_Analyst1`
 - **Workflow name:** `Send Email to Analyst`
 - **Trigger / Event:** On update of `FM 3 Status`
 - **GitHub:** [Send_Email_to_Analyst1.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Company_Universe/Company_Universe/Send_Email_to_Analyst1.js)
@@ -492,8 +520,9 @@ First-round (L1) outcome for FM 3, same three-branch structure as #17.
 
 ---
 
-### 29. `Send_Email_to_Hor`
+### 29. `Send Email to Hor`
 
+- **Link name (file):** `Send_Email_to_Hor`
 - **Workflow name:** `Send Email to Hor`
 - **Trigger / Event:** On update of `HoR Status`
 - **GitHub:** [Send_Email_to_Hor.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Company_Universe/Company_Universe/Send_Email_to_Hor.js)
@@ -508,8 +537,9 @@ Head of Research decision in the first (L1) round (same structure as #24/#27).
 
 ---
 
-### 30. `Send_Email_to_fm_3`
+### 30. `Send Email to fm 3`
 
+- **Link name (file):** `Send_Email_to_fm_3`
 - **Workflow name:** `Send Email to fm 3`
 - **Trigger / Event:** On update of `FM3 Name`
 - **GitHub:** [Send_Email_to_fm_3.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Company_Universe/Company_Universe/Send_Email_to_fm_3.js)
@@ -523,8 +553,9 @@ When FM 3 is assigned in the first round, notifies them of a new submission (sam
 
 ---
 
-### 31. `Send_Email_to_l3_Fm3`
+### 31. `Send Email to l3 Fm3`
 
+- **Link name (file):** `Send_Email_to_l3_Fm3`
 - **Workflow name:** `Send Email to l3 Fm3`
 - **Trigger / Event:** On update of `L3 FM3 Name`
 - **GitHub:** [Send_Email_to_l3_Fm3.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Company_Universe/Company_Universe/Send_Email_to_l3_Fm3.js)
@@ -538,8 +569,9 @@ When the L3 FM 3 reviewer is assigned, notifies them of a new submission (same p
 
 ---
 
-### 32. `Send_approval_email_to_fm`
+### 32. `Send approval email to fm1`
 
+- **Link name (file):** `Send_approval_email_to_fm`
 - **Workflow name:** `Send approval email to fm1`
 - **Trigger / Event:** On update of `FM1 Name`
 - **GitHub:** [Send_approval_email_to_fm.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Company_Universe/Company_Universe/Send_approval_email_to_fm.js)
@@ -553,8 +585,9 @@ When FM 1 is assigned in the first round, sends them the initial approval reques
 
 ---
 
-### 33. `Send_approval_email_to_fm1`
+### 33. `Send approval email to fm2`
 
+- **Link name (file):** `Send_approval_email_to_fm1`
 - **Workflow name:** `Send approval email to fm2`
 - **Trigger / Event:** On update of `FM2 Name`
 - **GitHub:** [Send_approval_email_to_fm1.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Company_Universe/Company_Universe/Send_approval_email_to_fm1.js)
@@ -568,8 +601,9 @@ First-round approval request to FM 2 when assigned (same pattern as #32). Note t
 
 ---
 
-### 34. `Send_approval_email_to_l2`
+### 34. `Send approval email to l2 fm1`
 
+- **Link name (file):** `Send_approval_email_to_l2`
 - **Workflow name:** `Send approval email to l2 fm1`
 - **Trigger / Event:** On update of `L2 FM1 Name`
 - **GitHub:** [Send_approval_email_to_l2.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Company_Universe/Company_Universe/Send_approval_email_to_l2.js)
@@ -583,8 +617,9 @@ L2-round approval request to FM 1 when assigned (same pattern as #32).
 
 ---
 
-### 35. `Send_approval_email_to_l3`
+### 35. `Send approval email to l2 fm2`
 
+- **Link name (file):** `Send_approval_email_to_l3`
 - **Workflow name:** `Send approval email to l2 fm2`
 - **Trigger / Event:** On update of `L2 FM2 Name`
 - **GitHub:** [Send_approval_email_to_l3.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Company_Universe/Company_Universe/Send_approval_email_to_l3.js)
@@ -598,8 +633,9 @@ L2-round approval request to FM 2 when assigned (same pattern as #32). Note the 
 
 ---
 
-### 36. `Send_approval_email_to_l4`
+### 36. `Send approval email to l3 fm1`
 
+- **Link name (file):** `Send_approval_email_to_l4`
 - **Workflow name:** `Send approval email to l3 fm1`
 - **Trigger / Event:** On update of `L3 FM1 Name`
 - **GitHub:** [Send_approval_email_to_l4.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Company_Universe/Company_Universe/Send_approval_email_to_l4.js)
@@ -613,8 +649,9 @@ L3-round approval request to FM 1 when assigned (same pattern as #32). Note the 
 
 ---
 
-### 37. `Send_approval_email_to_l5`
+### 37. `Send approval email to l3 fm2`
 
+- **Link name (file):** `Send_approval_email_to_l5`
 - **Workflow name:** `Send approval email to l3 fm2`
 - **Trigger / Event:** On update of `L3 FM2 Name`
 - **GitHub:** [Send_approval_email_to_l5.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Company_Universe/Company_Universe/Send_approval_email_to_l5.js)

@@ -17,8 +17,9 @@ This section holds the report-level action workflows for the Morning Meeting mod
 
 ## Workflow Details
 
-### 1. `FI_AB_Submit_to_current_m`
+### 1. `FI_AB Submit to current meeting`
 
+- **Link name (file):** `FI_AB_Submit_to_current_m`
 - **Workflow name:** `FI_AB Submit to current meeting`
 - **Report / Trigger:** Morning Notes — In My Drafts report — On click of action item: Submit Note
 - **Status:** In use
@@ -38,8 +39,9 @@ Submits a draft morning note into the correct meeting after validating that all 
 - Writes back onto the current record: links `Meeting_Detail`, `Morning_Meeting_Notes`, and `Morning_Meeting_Notes_Master`; sets `Record_Status1 = "Stored"`, `Submission_Date_Time = now`, and `Edit_Access = true`.
 - Shows a success message with the note's `Topic_Header`.
 
-### 2. `Raise_Notes_Edit_Request`
+### 2. `Raise Notes Edit Request`
 
+- **Link name (file):** `Raise_Notes_Edit_Request`
 - **Workflow name:** `Raise Notes Edit Request`
 - **Report / Trigger:** Morning Notes — In My Submitted Notes report — On click of action item: Raise Edit Request
 - **Status:** In use
@@ -55,8 +57,9 @@ Lets an analyst request permission to edit an already-submitted morning note. It
 - Sends an email from `rms@enamamc.com` to the Research Head, subject "Meeting Notes Edit Request Raised", containing the analyst name, company name, the meeting note text, and a "View Record" link to approve.
 - Note: it sets a local variable `Raised_Request = true` (not `input.Raised_Request`), so unlike workflow #5 it does not flag the source record.
 
-### 3. `meeting_notes_edit_approv`
+### 3. `meeting notes edit approve`
 
+- **Link name (file):** `meeting_notes_edit_approv`
 - **Workflow name:** `meeting notes edit approve`
 - **Report / Trigger:** Meeting Notes Edit Request — In Meeting Notes Edit Request Report — On click of action item: Approve
 - **Status:** In use
@@ -73,8 +76,9 @@ Approves an analyst's edit request: it unlocks the underlying morning note for e
 - If the edit request is not found, it shows "Meeting Notes Edit Request not found."
 - Note: the `morning_meeting_notes` lookup on line 15 is computed but not otherwise used; an approval-comment popup flow is present but commented out.
 
-### 4. `Meeting_notes_edit_reject`
+### 4. `Meeting notes edit rejection`
 
+- **Link name (file):** `Meeting_notes_edit_reject`
 - **Workflow name:** `Meeting notes edit rejection`
 - **Report / Trigger:** Meeting Notes Edit Request — In Meeting Notes Edit Request Report — On click of action item (rejection)
 - **Status:** In use
@@ -90,8 +94,9 @@ Rejects an analyst's edit request and notifies the analyst by email.
 - If the record is not found, shows "Meeting Notes Edit Request not found."
 - Unlike the approval workflow, it does **not** change any edit-access flag on the underlying note.
 
-### 5. `approval_for_meeting_note`
+### 5. `approval for meeting notes edit`
 
+- **Link name (file):** `approval_for_meeting_note`
 - **Workflow name:** `approval for meeting notes edit`
 - **Report / Trigger:** Morning Meeting Notes — In Morning Meeting Notes Report — On click of action item: Raise Edit Request
 - **Status:** Not in use (marked "Not in use" in the first-line comment)
@@ -105,8 +110,9 @@ An older/superseded version of the "raise edit request" flow that operated on `M
 - Iterates over the note and inserts a `Meeting_Notes_Edit_Request` record using nested `Morning_Notes` sub-fields (`Company_Name`, `Meet_Note`); note it does not set `Ref_Record`.
 - Looks up the Research Head email (`Profile == "Head of Research" && User_Status == "Active"`) and emails a "Meeting Notes Edit Request Raised" notification from `rms@enamamc.com` with analyst name, company, the note text, and a review link.
 
-### 6. `edit_notes1`
+### 6. `edit_notes`
 
+- **Link name (file):** `edit_notes1`
 - **Workflow name:** `edit_notes`
 - **Report / Trigger:** Morning Meeting Notes — In Morning Meeting Notes Report — On click of action item
 - **Status:** Not in use (marked "Not in use" in the first-line comment)

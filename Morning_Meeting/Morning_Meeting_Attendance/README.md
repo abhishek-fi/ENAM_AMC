@@ -19,8 +19,9 @@ This form captures each analyst's attendance response for a Morning Meeting ("Wi
 
 ## Workflow Details
 
-### 1. `FI_AB_Update_Not_Applied_`
+### 1. `FI_AB Update Not Applied List in Master`
 
+- **Link name (file):** `FI_AB_Update_Not_Applied_`
 - **Workflow name:** `FI_AB Update Not Applied List in Master`
 - **Trigger / Event:** Created or Edited — on successful form submission
 - **GitHub:** [FI_AB_Update_Not_Applied_.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Meeting_Attendance/FI_AB_Update_Not_Applied_.js)
@@ -34,8 +35,9 @@ After a record is created or edited, if the analyst has not given a positive res
 
 ---
 
-### 2. `FI_AB_Update_Not_Applied_1`
+### 2. `FI_AB Update Not Applied List in Master`
 
+- **Link name (file):** `FI_AB_Update_Not_Applied_1`
 - **Workflow name:** `FI_AB Update Not Applied List in Master`
 - **Trigger / Event:** Edited — on update of the field "Will you be able to join tomorrow's meeting?"
 - **GitHub:** [FI_AB_Update_Not_Applied_1.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Meeting_Attendance/FI_AB_Update_Not_Applied_1.js)
@@ -49,8 +51,9 @@ Identical logic to workflow #1, but triggered specifically when the `Will_you_be
 
 ---
 
-### 3. `Mandate_fields`
+### 3. `Mandate fields`
 
+- **Link name (file):** `Mandate_fields`
 - **Workflow name:** `Mandate fields`
 - **Trigger / Event:** Created or Edited — validations on form submission
 - **GitHub:** [Mandate_fields.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Meeting_Attendance/Mandate_fields.js)
@@ -64,8 +67,9 @@ Enforces conditionally mandatory fields based on the attendance answer, blocking
 
 ---
 
-### 4. `Meeting_joining_attendanc`
+### 4. `Meeting joining attendance status blank`
 
+- **Link name (file):** `Meeting_joining_attendanc`
 - **Workflow name:** `Meeting joining attendance status blank`
 - **Trigger / Event:** Created or Edited — validations on form submission
 - **GitHub:** [Meeting_joining_attendanc.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Meeting_Attendance/Meeting_joining_attendanc.js)
@@ -78,8 +82,9 @@ Requires the analyst to provide an attendance status before the record can be sa
 
 ---
 
-### 5. `Not_able_to_create_record`
+### 5. `Not able to create record directedly from the form`
 
+- **Link name (file):** `Not_able_to_create_record`
 - **Workflow name:** `Not able to create record directedly from the form`
 - **Trigger / Event:** Created — on load of the form
 - **GitHub:** [Not_able_to_create_record.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Meeting_Attendance/Not_able_to_create_record.js)
@@ -93,8 +98,9 @@ Prevents any user other than the system account from directly creating a new att
 
 ---
 
-### 6. `Not_editable_meeting_deta`
+### 6. `Not editable meeting details and Analyst`
 
+- **Link name (file):** `Not_editable_meeting_deta`
 - **Workflow name:** `Not editable meeting details and Analyst`
 - **Trigger / Event:** Created or Edited — on load of the form
 - **GitHub:** [Not_editable_meeting_deta.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Meeting_Attendance/Not_editable_meeting_deta.js)
@@ -108,8 +114,9 @@ Locks the meeting linkage and analyst identity for everyone except the system ac
 
 ---
 
-### 7. `Redirect_to_the_meeting_p`
+### 7. `Redirect to the meeting page`
 
+- **Link name (file):** `Redirect_to_the_meeting_p`
 - **Workflow name:** `Redirect to the meeting page`
 - **Trigger / Event:** Created or Edited — on successful form submission
 - **GitHub:** [Redirect_to_the_meeting_p.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Meeting_Attendance/Redirect_to_the_meeting_p.js)
@@ -124,8 +131,9 @@ After a successful save, sends the user to the attendance report entry for their
 
 ---
 
-### 8. `data_populate_in_meeting_`
+### 8. `data populate in meeting details subfrom`
 
+- **Link name (file):** `data_populate_in_meeting_`
 - **Workflow name:** `data populate in meeting details subfrom`
 - **Trigger / Event:** Created or Edited — on successful form submission
 - **GitHub:** [data_populate_in_meeting_.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Meeting_Attendance/data_populate_in_meeting_.js)

@@ -19,8 +19,9 @@ This form captures each analyst's participation in a morning meeting — whether
 
 ## Workflow Details
 
-### 1. `FI_AB_Add_Not_Attending_R`
+### 1. `FI_AB Add Not Attending Reason to Master`
 
+- **Link name (file):** `FI_AB_Add_Not_Attending_R`
 - **Workflow name:** `FI_AB Add Not Attending Reason to Master`
 - **Trigger / Event:** Created — Successful form submission
 - **GitHub:** [FI_AB_Add_Not_Attending_R.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Meeting_Notes/FI_AB_Add_Not_Attending_R.js)
@@ -38,8 +39,9 @@ Net effect: each master record (one per meeting) accumulates the list of Morning
 
 ---
 
-### 2. `FI_AB_Disable_fields_whil`
+### 2. `FI_AB Disable fields while editing`
 
+- **Link name (file):** `FI_AB_Disable_fields_whil`
 - **Workflow name:** `FI_AB Disable fields while editing`
 - **Trigger / Event:** Edited — Load of the form
 - **GitHub:** [FI_AB_Disable_fields_whil.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Meeting_Notes/FI_AB_Disable_fields_whil.js)
@@ -57,8 +59,9 @@ On opening an existing record for edit, it locks down the core identity/attendan
 
 ---
 
-### 3. `Mandate_fields1`
+### 3. `Mandate fields`
 
+- **Link name (file):** `Mandate_fields1`
 - **Workflow name:** `Mandate fields`
 - **Trigger / Event:** Created or Edited — Validations on form submission
 - **GitHub:** [Mandate_fields1.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Meeting_Notes/Mandate_fields1.js)
@@ -72,8 +75,9 @@ Conditionally requires a field depending on the attendance answer, blocking subm
 
 ---
 
-### 4. `No_one_to_be_create_recor`
+### 4. `No one to be create record from the form`
 
+- **Link name (file):** `No_one_to_be_create_recor`
 - **Workflow name:** `No one to be create record from the form`
 - **Trigger / Event:** Created — Load of the form
 - **GitHub:** [No_one_to_be_create_recor.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Meeting_Notes/No_one_to_be_create_recor.js)
@@ -96,8 +100,9 @@ Then shows the alert **"You do not have access to create record!"**. (Records ar
 
 ---
 
-### 5. `Raised_request_default_va`
+### 5. `Raised request default value`
 
+- **Link name (file):** `Raised_request_default_va`
 - **Workflow name:** `Raised request default value`
 - **Trigger / Event:** Created or Edited — Load of the form
 - **GitHub:** [Raised_request_default_va.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Meeting_Notes/Raised_request_default_va.js)
@@ -112,8 +117,9 @@ On form load (create or edit):
 
 ---
 
-### 6. `set_mandatory_field_valid`
+### 6. `set mandatory field validation`
 
+- **Link name (file):** `set_mandatory_field_valid`
 - **Workflow name:** `set mandatory field validation`
 - **Trigger / Event:** Created or Edited — Validations on form submission
 - **GitHub:** [set_mandatory_field_valid.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Meeting_Notes/set_mandatory_field_valid.js)
@@ -129,8 +135,9 @@ Note: the code references `input.Morning_Notes.<field>` (subform prefix without 
 
 ---
 
-### 7. `update_meeting_details_in`
+### 7. `update meeting details in subfrom`
 
+- **Link name (file):** `update_meeting_details_in`
 - **Workflow name:** `update meeting details in subfrom`
 - **Trigger / Event:** Created or Edited — Successful form submission
 - **GitHub:** [update_meeting_details_in.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Meeting_Notes/update_meeting_details_in.js)
@@ -150,8 +157,9 @@ Pushes this analyst's attendance answer back into the linked `Meeting_Details` r
 
 ---
 
-### 8. `update_new_Idea`
+### 8. `update new Idea`
 
+- **Link name (file):** `update_new_Idea`
 - **Workflow name:** `update new Idea`
 - **Trigger / Event:** Created or Edited — User input of `Morning_Notes.Portfolio_Stock`
 - **GitHub:** [update_new_Idea.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Meeting_Notes/update_new_Idea.js)

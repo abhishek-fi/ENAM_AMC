@@ -12,8 +12,9 @@ This form captures the notes for a morning meeting. It has a single form workflo
 
 ## Workflow Details
 
-### 1. `FI_AB_Add_attendance_list`
+### 1. `FI_AB Add attendance list`
 
+- **Link name (file):** `FI_AB_Add_attendance_list`
 - **Workflow name:** `FI_AB Add attendance list`
 - **Trigger / Event:** On successful form submission — runs after a Morning Meeting Notes Master record is Created
 - **GitHub:** [FI_AB_Add_attendance_list.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Meeting_Notes_Master/FI_AB_Add_attendance_list.js)

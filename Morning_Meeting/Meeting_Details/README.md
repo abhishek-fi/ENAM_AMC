@@ -13,8 +13,9 @@ The **Meeting Details** form captures the morning meeting record — meeting tit
 
 ## Workflow Details
 
-### 1. `Form_View_Only_No_One_can`
+### 1. `Form View Only No One can`
 
+- **Link name (file):** `Form_View_Only_No_One_can`
 - **Workflow name:** `Form View Only No One can`
 - **Trigger / Event:** Created — Load of the form
 - **GitHub:** [Form_View_Only_No_One_can.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Meeting_Details/Form_View_Only_No_One_can.js)
@@ -31,8 +32,9 @@ The alert on load signals that users are not permitted to create a Meeting Detai
 
 ---
 
-### 2. `meeting_details_read_only`
+### 2. `meeting details read only`
 
+- **Link name (file):** `meeting_details_read_only`
 - **Workflow name:** `meeting details read only`
 - **Trigger / Event:** Created or Edited — Load of the form
 - **GitHub:** [meeting_details_read_only.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Meeting_Details/meeting_details_read_only.js)

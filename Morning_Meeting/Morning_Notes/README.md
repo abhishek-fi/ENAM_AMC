@@ -19,8 +19,9 @@ The Morning Notes form captures analyst notes raised for the morning meeting, ke
 
 ## Workflow Details
 
-### 1. `FI_AB_Enable_edit_access_`
+### 1. `FI_AB Enable edit access flag by default`
 
+- **Link name (file):** `FI_AB_Enable_edit_access_`
 - **Workflow name:** `FI_AB Enable edit access flag by default`
 - **Trigger / Event:** Created – Load of the form (new records only)
 - **GitHub:** [FI_AB_Enable_edit_access_.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Notes/FI_AB_Enable_edit_access_.js)
@@ -36,8 +37,9 @@ These defaults feed into the edit-lock logic used by other workflows (see the "P
 
 ---
 
-### 2. `FI_AB_Filter_Companies_fo`
+### 2. `FI_AB Filter Companies for User Profiles`
 
+- **Link name (file):** `FI_AB_Filter_Companies_fo`
 - **Workflow name:** `FI_AB Filter Companies for User Profiles`
 - **Trigger / Event:** Created or Edited – Load of the form
 - **GitHub:** [FI_AB_Filter_Companies_fo.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Notes/FI_AB_Filter_Companies_fo.js)
@@ -54,8 +56,9 @@ Restricts the choices available in the `Company_Name` lookup according to the lo
 
 ---
 
-### 3. `FI_AB_Hide_Dev_Fields`
+### 3. `FI_AB Hide Dev Fields`
 
+- **Link name (file):** `FI_AB_Hide_Dev_Fields`
 - **Workflow name:** `FI_AB Hide Dev Fields`
 - **Trigger / Event:** Created or Edited – Load of the form
 - **GitHub:** [FI_AB_Hide_Dev_Fields.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Notes/FI_AB_Hide_Dev_Fields.js)
@@ -68,8 +71,9 @@ Hides internal/development-only fields from the user-facing form on load.
 
 ---
 
-### 4. `FI_AB_Layout_Rules`
+### 4. `FI_AB Layout Rules`
 
+- **Link name (file):** `FI_AB_Layout_Rules`
 - **Workflow name:** `FI_AB Layout Rules`
 - **Trigger / Event:** Created or Edited – Load of the form
 - **GitHub:** [FI_AB_Layout_Rules.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Notes/FI_AB_Layout_Rules.js)
@@ -91,8 +95,9 @@ The main on-load layout engine. It fixes the analyst, then reshapes the form for
 
 ---
 
-### 5. `FI_AB_Prevent_from_Editin`
+### 5. `FI_AB Prevent from Editing`
 
+- **Link name (file):** `FI_AB_Prevent_from_Editin`
 - **Workflow name:** `FI_AB Prevent from Editing`
 - **Trigger / Event:** Edited – Load of the form (existing records only)
 - **GitHub:** [FI_AB_Prevent_from_Editin.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Notes/FI_AB_Prevent_from_Editin.js)
@@ -105,8 +110,9 @@ Blocks editing of records that are already finalised.
 
 ---
 
-### 6. `FI_AB_Submit_it_as_Stored`
+### 6. `FI_AB Submit it as Stored`
 
+- **Link name (file):** `FI_AB_Submit_it_as_Stored`
 - **Workflow name:** `FI_AB Submit it as Stored`
 - **Trigger / Event:** Created or Edited – Validations on form submission
 - **GitHub:** [FI_AB_Submit_it_as_Stored.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Notes/FI_AB_Submit_it_as_Stored.js)
@@ -124,8 +130,9 @@ Runs all mandatory-field validations on submit, building a list of missing items
 
 ---
 
-### 7. `FI_AB_Type_based_layout_r`
+### 7. `FI_AB Type based layout rules`
 
+- **Link name (file):** `FI_AB_Type_based_layout_r`
 - **Workflow name:** `FI_AB Type based layout rules`
 - **Trigger / Event:** Created or Edited – User input of `Company / Sector?`
 - **GitHub:** [FI_AB_Type_based_layout_r.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Notes/FI_AB_Type_based_layout_r.js)
@@ -139,8 +146,9 @@ The on-field-change counterpart to the layout rules: when the user picks Company
 
 ---
 
-### 8. `FI_AB_populate_company_de`
+### 8. `FI_AB populate company details`
 
+- **Link name (file):** `FI_AB_populate_company_de`
 - **Workflow name:** `FI_AB populate company details`
 - **Trigger / Event:** Created or Edited – User input of `Company Name`
 - **GitHub:** [FI_AB_populate_company_de.js](https://github.com/abhishek-fi/ENAM_AMC/blob/main/Morning_Meeting/Morning_Notes/FI_AB_populate_company_de.js)
